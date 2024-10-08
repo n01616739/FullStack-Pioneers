@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Fullstack Pioneers</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.webp" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        /* Your existing CSS styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-image: url('humber.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: black;
+        }
+
+        .navbar {
+            background-color: rgba(52, 58, 64, 0.8);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .container {
+            flex: 1;
+            padding: 20px;
+            background-color: transparent;
+            border-radius: 10px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            box-shadow: none;
+            z-index: 1;
+        }
+
+        .text-content {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-left: 10px;
+        }
+
+        /* Flexbox for home content layout */
+        #home-content {
+            display: flex;
+            align-items: center;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        #home-content img {
+            margin-right: 30px;
+            max-width: 400px;
+            height: auto;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hide about content initially */
+        #about-content {
+            display: none;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: rgba(52, 58, 64, 0.8);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            z-index: 2;
+        }
+
+        #team-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .team-member {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: left;
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .qr-code {
+            margin-top: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .qr-label {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* New styles for event section */
+        #event-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            text-align: center;
+        }
+
+        #event-section h2 {
+            margin: 0 0 10px;
+        }
+
+        #event-section p {
+            margin: 5px 0;
+        }
+
+        #event-section .contact-info {
+            font-weight: bold;
+        }
+
+        /* Styles for modal (popup form) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 500px; /* Maximum width for the modal */
+            border-radius: 10px; /* Rounded corners for the modal */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Space between form fields */
+        }
+
+        .form-group label {
+            display: block; /* Labels on separate lines */
+            margin-bottom: 5px; /* Space below labels */
+        }
+
+        .form-group input {
+            width: 100%; /* Full width */
+            padding: 8px; /* Padding inside input */
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 5px; /* Rounded corners for input */
+        }
+
+        .error-message {
+            color: red; /* Red color for error messages */
+            font-size: 12px; /* Smaller font size */
+            margin-top: 5px; /* Space above the error message */
+        }
+    </style>
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar">
+        <a class="navbar-brand" href="#"></a>
+        <ul>
+            <li><a href="#home-content">Home</a></li>
+            <li><a href="#team-section">Team</a></li>
+            <li><a href="#" id="open-form">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content-->
+    <div class="container">
+        <!-- Home Content -->
+        <div id="home-content">
+            <img src="logo.webp" alt="Logo" class="left-image" />
+            <div class="text-content">
+                <h1>FULLSTACK PIONEERS</h1>
+                <p>We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500 companies such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and Software Testing. We are currently seeking a sponsor to support us in completing our Capstone Project. In return, we aim to deliver effective, refactored solutions to our clients' challenges. Our areas of expertise include Fullstack Development, Mobile App Development, and Database Management Operations. We pride ourselves on backing our claims with measurable results. Feel free to explore our projects and LinkedIn profiles as you scroll down.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div id="team-section">
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="member-1.jpeg" alt="Member 1" class="member-photo" />
+                <div class="member-info">
+                    <h3>Siddharth Nambiar</h3>
+                    <h3>Full Stack Developer</h3>
+                    <p>Skill Sets:</p>
+                    <ul>
+                        <li>Java</li>
+                        <li>Express js</li>
+                        <li>Python </li>
+                    </ul>
+                    <div class="qr-code">
+                        <img src="qr-code_member1.png" alt="QR Code for Member 1's LinkedIn" width="100" height="100" />
+                        <div class="qr-label">Connect On LinkedIn</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="Abhsiha.jpeg" alt="Member 2" class="member-photo" />
+                <div class="member-info">
+                    <h3>Abhisha Mathew</h3>
+                    <h3>Full Stack Developer</h3>
+                    <p>Skill Sets:</p>
+                    <ul>
+                        <li>Java</li>
+                        <li>Node </li>
+                        <li>React</li>
+                    </ul>
+                    <div class="qr-code">
+                        <img src="team-member2.png" alt="QR Code for Member 2's LinkedIn" width="100" height="100" />
+                        <div class="qr-label">Connect On LinkedIn</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="Sneha.jpg" alt="Member 3" class="member-photo" />
+                <div class="member-info">
+                    <h3>Sneha Jose</h3>
+                    <h3>Front End Developer</h3>
+                    <p>Skill Sets:</p>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>css(Bootstrap)</li>
+                        <li>git</li>
+                    </ul>
+                    <div class="qr-code">
+                        <img src="team-member3.png" alt="QR Code for Member 3's LinkedIn" width="100" height="100" />
+                        <div class="qr-label">Connect On LinkedIn</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="assets/member4.jpg" alt="Member 4" class="member-photo" />
+                <div class="member-info">
+                    <h3>Mushfiqur Rahman</h3>
+                    <h3>Front End And Database Operations</h3>
+                    <p>Skill Sets:</p>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>mysql </li>
+                        <li>API Integration(RESTFUL) </li>
+                    </ul>
+                    <div class="qr-code">
+                        <img src="assets/" alt="QR Code for Member 4's LinkedIn" width="100" height="100" />
+                        <div class="qr-label">Connect On LinkedIn</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <footer>
+        <p>Copyright &copy; Your Website 2023</p>
+    </footer>
+
+    <!-- Popup Form -->
+    <div id="popup-form" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="form-collabaration.jpeg" alt="Collaboration Image" style="max-width: 100%; height: auto; margin-bottom: 15px;"/> <!-- Second Image -->
+            
+            <form id="contact-form" method="POST">
+                <div class="form-group">
+                    <label for="company-name">Company Name</label>
+                    <input type="text" id="company-name" name="companyName" required>
+                    <span class="error-message" id="company-name-error"></span> <!-- Error message for company name -->
+                </div>
+                <div class="form-group">
+                    <label for="contact-name">Contact Person Name</label>
+                    <input type="text" id="contact-name" name="contactName" required>
+                    <span class="error-message" id="contact-name-error"></span> <!-- Error message for contact name -->
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="email-error"></span> <!-- Error message for email -->
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <span class="error-message" id="phone-error"></span> <!-- Error message for phone number -->
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- JavaScript for Popup Form -->
+    <script>
+        // Get the modal
+        var modal = document.getElementById('popup-form');
+    
+        // Get the button that opens the modal
+        var openFormBtn = document.getElementById('open-form');
+    
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName('close')[0];
+    
+        // When the user clicks on the button, open the modal
+        openFormBtn.onclick = function() {
+            modal.style.display = 'block';
+        }
+    
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+    
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    
+        // Form submission handling
+    // Form submission handling
+var form = document.getElementById('contact-form');
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Clear previous error messages
+    document.getElementById('company-name-error').innerText = '';
+    document.getElementById('contact-name-error').innerText = '';
+    document.getElementById('email-error').innerText = '';
+    document.getElementById('phone-error').innerText = '';
+
+    // Log form data
+    var formData = new FormData(form);
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]); // Log each field and its value
+    }
+
+    // Validation flags
+    let isValid = true;
+
+    // Validate Company Name
+    const companyName = document.getElementById('company-name').value;
+    if (companyName.trim() === '') {
+        document.getElementById('company-name-error').innerText = 'Company name is required.';
+        isValid = false;
+    }
+
+    // Validate Contact Person Name
+    const contactName = document.getElementById('contact-name').value;
+    if (contactName.trim() === '') {
+        document.getElementById('contact-name-error').innerText = 'Contact person name is required.';
+        isValid = false;
+    }
+
+    // Validate Email
+    const email = document.getElementById('email').value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById('email-error').innerText = 'Please enter a valid email address.';
+        isValid = false;
+    }
+
+    // Validate Phone Number
+    const phone = document.getElementById('phone').value;
+    if (phone.trim() === '') {
+        document.getElementById('phone-error').innerText = 'Phone number is required.';
+        isValid = false;
+    } else if (!/^\d{10}$/.test(phone)) { // Assuming a 10-digit phone number
+        document.getElementById('phone-error').innerText = 'Please enter a valid phone number.';
+        isValid = false;
+    }
+
+    // If valid, proceed with form submission
+    if (isValid) {
+        // Use the existing formData
+        fetch('/submit-form', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.text(); // Expecting text response
+        })
+        .then(data => {
+            alert(data); // Show success message
+            form.reset(); // Reset the form
+            modal.style.display = 'none'; // Close modal after submission
+        })
+        .catch(error => {
+            alert('There was a problem with your submission: ' + error.message);
+        });
+    }
+});
+
+        
+    
+    </script>
+       
+    
+</body>
+</html>
