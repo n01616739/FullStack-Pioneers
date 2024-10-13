@@ -13,7 +13,13 @@ const PORT = process.env.PORT || 3000;
 const upload = multer(); // No file uploads, just text fields in the form
 
 // Middleware
-app.use(express.static("./public/")); // Serve static files
+
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Route to serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
 
 // Set up Nodemailer transport
 const transporter = nodemailer.createTransport({
