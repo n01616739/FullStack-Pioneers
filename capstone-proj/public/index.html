@@ -7,32 +7,120 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Fullstack Pioneers</title>
-    <link rel="icon" type="image/x-icon" href="../assets/logo/logo.webp" />
+    <link rel="icon" type="image/x-icon" href="./assets/logo/logo.webp" />
     <link href="./css/styles.css" rel="stylesheet" />
+    <style>
+        /* Ensure the entire page uses flexbox */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        .container {
+            flex: 1; /* Allow this container to grow and take available space */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+            justify-content: center; /* Center content vertically */
+        }
+
+        /* Additional CSS to hide the team section initially */
+        #team-section {
+            display: none; /* Hide team section by default */
+            flex-direction: column;
+            align-items: center; /* Center team members */
+        }
+
+        /* Team grid styling */
+        .team-grid {
+            background-color: transparent; /* Ensure no background color */
+            padding: 20px; /* Optional: Add padding for layout */
+            display: flex; /* Use flexbox for horizontal layout */
+            justify-content: center; /* Center team members horizontally */
+            gap: 20px; /* Space between team members */
+        }
+
+        .team-member {
+            text-align: center; /* Center text within each member */
+            max-width: 200px; /* Limit the width of each member card */
+            border: 1px solid #ccc; /* Optional: border for visibility */
+            border-radius: 10px; /* Optional: rounded corners */
+            padding: 10px; /* Optional: padding for aesthetics */
+            background-color: #fff; /* Optional: background color */
+            cursor: pointer; /* Indicate clickable item */
+        }
+
+         /* Popup styling */
+    .popup {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed position for the popup */
+        top: -100%; /* Start above the viewport */
+        left: 0;
+        right: 0;
+        background-color: #4a90e2; /* Popup background color */
+        color: white; /* Text color */
+        padding: 20px; /* Padding around text */
+        border-radius: 8px; /* Rounded corners */
+        transition: top 0.5s ease; /* Animation for sliding down */
+        z-index: 1000; /* Ensure it appears on top */
+        text-align: center; /* Center text in the popup */
+    }
+
+    /* Styling for the popup image */
+    #popup-image {
+        width: 100px; /* Fixed width */
+        height: 100px; /* Fixed height to maintain square shape */
+        object-fit: cover; /* Ensure the image covers the box without stretching */
+        border-radius: 10%; /* Optional: rounded corners */
+        margin: 10px auto; /* Center the image */
+    }
+
+        footer {
+            text-align: center; /* Center the footer text */
+            padding: 10px 0; /* Add some padding for spacing */
+            background-color: #002147; /* Dark blue background color for footer */
+            color: white; /* White text color for footer */
+            border-top: 1px solid #e7e7e7; /* Optional: border-top for visual separation */
+        }
+
+        h2 {
+            background-color: #002147; /* Dark blue background color for the heading */
+            color: white; /* White text color for the heading */
+            padding: 10px; /* Add some padding for spacing */
+            text-align: center; /* Center the heading text */
+        }
+
+        .text-content {
+            text-align: center; /* Center text */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+        }
+    </style>
 </head>
 
 <body>
     <!-- Responsive navbar-->
     <nav class="navbar">
-        <a class="navbar-brand" href="#"><img src="../assets/logo/logo.webp" alt="Logo" class="left-image" /></a>
+        <a class="navbar-brand" href="#"><img src="./assets/logo/logo.webp" alt="Logo" class="left-image" /></a>
         <ul>
-            <li><a href="#home-content">Home</a></li>
-            <li><a href="#team-section">Team</a></li>
+            <li><a href="#home-content" id="home-link">Home</a></li>
+            <li><a href="#team-section" id="team-link">Team</a></li>
             <li><a href="#" id="open-form">Contact</a></li>
         </ul>
         <div class="right-logo">
-            <img src="../assets/logo/humber_logo.png" alt="Second Logo" class="right-image" />
+            <img src="./assets/logo/humber_logo.png" alt="Second Logo" class="right-image" />
         </div>
     </nav>
-    
 
     <!-- Page Content-->
     <div class="container">
         <!-- Home Content -->
         <div id="home-content">
-
             <div class="text-content">
-                <h1>FULLSTACK PIONEERS</h1>
+                <h1 id="main-heading">FULLSTACK PIONEERS</h1>
                 <p>We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500 companies
                     such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and
                     Software Testing. We are currently seeking a sponsor to support us in completing our Capstone
@@ -42,236 +130,285 @@
                     to explore our projects and LinkedIn profiles as you scroll down.</p>
             </div>
         </div>
+
+        <!-- Team Section -->
+        <div id="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member" onclick="showPopup('Siddharth Nambiar', 'Full Stack Developer', 'Java, Express.js, Python', './assets/images/qrcode_member1.png', './assets/images/member-1.jpeg', 'Siddharth is a skilled developer with expertise in both front-end and back-end technologies, creating robust web applications.')">
+                    <img src="./assets/images/member-1.jpeg" alt="Member 1" class="member-photo" />
+                    <div class="member-info">
+                        <h3>Siddharth Nambiar</h3>
+                        <h4>Full Stack Developer</h4>
+                        <p>Skill Sets:</p>
+                        <ul>
+                            <li>Java</li>
+                            <li>Express.js</li>
+                            <li>Python</li>
+                        </ul>
+                        <div class="qr-code">
+                            <img src="./assets/images/qrcode_member1.png" alt="QR Code for Member 1's LinkedIn" width="100" height="100" />
+                            <div class="qr-label">Connect On LinkedIn</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member" onclick="showPopup('Abhisha Mathew', 'Full Stack Developer', 'Java, Node, React', './assets/images/team-member2.png', './assets/images/Abhsiha.jpeg', 'Abhisha is adept at developing scalable applications, leveraging her full-stack skills to enhance user experiences.')">
+                    <img src="./assets/images/Abhsiha.jpeg" alt="Member 2" class="member-photo" />
+                    <div class="member-info">
+                        <h3>Abhisha Mathew</h3>
+                        <h4>Full Stack Developer</h4>
+                        <p>Skill Sets:</p>
+                        <ul>
+                            <li>Java</li>
+                            <li>Node</li>
+                            <li>React</li>
+                        </ul>
+                        <div class="qr-code">
+                            <img src="./assets/images/team-member2.png" alt="QR Code for Member 2's LinkedIn" width="100" height="100" />
+                            <div class="qr-label">Connect On LinkedIn</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member" onclick="showPopup('Sneha Jose', 'Front End Developer', 'JavaScript, CSS (Bootstrap), Git', './assets/images/team-member3.png', './assets/images/Sneha.jpg', 'Sneha excels in creating responsive designs and optimizing user interfaces for enhanced user engagement.')">
+                    <img src="./assets/images/Sneha.jpg" alt="Member 3" class="member-photo" />
+                    <div class="member-info">
+                        <h3>Sneha Jose</h3>
+                        <h4>Front End Developer</h4>
+                        <p>Skill Sets:</p>
+                        <ul>
+                            <li>JavaScript</li>
+                            <li>CSS (Bootstrap)</li>
+                            <li>Git</li>
+                        </ul>
+                        <div class="qr-code">
+                            <img src="./assets/images/team-member3.png" alt="QR Code for Member 3's LinkedIn" width="100" height="100" />
+                            <div class="qr-label">Connect On LinkedIn</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member" onclick="showPopup('Mushfiqur Rahman', 'Front End And Database Operations', 'JavaScript, MySQL, API Integration (RESTFUL)', './assets/', './assets/member4.jpg', 'Mushfiqur specializes in integrating APIs and managing database operations, ensuring seamless data flow.')">
+                    <img src="./assets/member4.jpg" alt="Member 4" class="member-photo" />
+                    <div class="member-info">
+                        <h3>Mushfiqur Rahman</h3>
+                        <h4>Front End And Database Operations</h4>
+                        <p>Skill Sets:</p>
+                        <ul>
+                            <li>JavaScript</li>
+                            <li>MySQL</li>
+                            <li>API Integration (RESTFUL)</li>
+                        </ul>
+                        <div class="qr-code">
+                            <img src="assets/" alt="QR Code for Member 4's LinkedIn" width="100" height="100" />
+                            <div class="qr-label">Connect On LinkedIn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Team Section -->
-    <div id="team-section">
-        <h2>Meet Our Team</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="../assets/images/member-1.jpeg" alt="Member 1" class="member-photo" />
-                <div class="member-info">
-                    <h3>Siddharth Nambiar</h3>
-                    <h4>Full Stack Developer</h4>
-                    <p>Skill Sets:</p>
-                    <ul>
-                        <li>Java</li>
-                        <li>Express.js</li>
-                        <li>Python</li>
-                    </ul>
-                    <div class="qr-code">
-                        <img src="../assets/images/qrcode_member1.png" alt="QR Code for Member 1's LinkedIn" width="100" height="100" />
-                        <div class="qr-label">Connect On LinkedIn</div>
-                    </div>
-                </div>
-            </div>
+    <!-- Popup for Member Details -->
+    <div id="member-popup" class="popup">
+        <img id="popup-image" src="" alt="Member Image" style="max-width: 100px; display: block; margin: 10px auto; border-radius: 50%;" />
+        <h3 id="popup-name"></h3>
+        <h4 id="popup-role"></h4>
+        <p id="popup-skills"></p>
+        <p id="popup-description"></p>
+        <img id="popup-qr" src="" alt="QR Code" style="max-width: 100px; display: block; margin: 10px auto;" />
+        <button onclick="closePopup()">Close</button>
+    </div>
 
-            <div class="team-member">
-                <img src="../assets/images/Abhsiha.jpeg" alt="Member 2" class="member-photo" />
-                <div class="member-info">
-                    <h3>Abhisha Mathew</h3>
-                    <h4>Full Stack Developer</h4>
-                    <p>Skill Sets:</p>
-                    <ul>
-                        <li>Java</li>
-                        <li>Node</li>
-                        <li>React</li>
-                    </ul>
-                    <div class="qr-code">
-                        <img src="../assets/images/team-member2.png" alt="QR Code for Member 2's LinkedIn" width="100" height="100" />
-                        <div class="qr-label">Connect On LinkedIn</div>
-                    </div>
-                </div>
-            </div>
+    <!-- Footer-->
+    <footer>
+        <p>Copyright &copy; Your Website 2023</p>
+    </footer>
 
-            <div class="team-member">
-                <img src="../assets/images/Sneha.jpg" alt="Member 3" class="member-photo" />
-                <div class="member-info">
-                    <h3>Sneha Jose</h3>
-                    <h4>Front End Developer</h4>
-                    <p>Skill Sets:</p>
-                    <ul>
-                        <li>JavaScript</li>
-                        <li>CSS (Bootstrap)</li>
-                        <li>Git</li>
-                    </ul>
-                    <div class="qr-code">
-                        <img src="../assets/images/team-member3.png" alt="QR Code for Member 3's LinkedIn" width="100" height="100" />
-                        <div class="qr-label">Connect On LinkedIn</div>
-                    </div>
-                </div>
-            </div>
+    <!-- Popup Form -->
+    <div id="popup-form" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="./assets/images/form-collabaration.jpeg" alt="Collaboration Image"
+                style="max-width: 100%; height: auto; margin-bottom: 15px;" /> <!-- Second Image -->
 
-            <div class="team-member">
-                <img src="assets/member4.jpg" alt="Member 4" class="member-photo" />
-                <div class="member-info">
-                    <h3>Mushfiqur Rahman</h3>
-                    <h4>Front End And Database Operations</h4>
-                    <p>Skill Sets:</p>
-                    <ul>
-                        <li>JavaScript</li>
-                        <li>MySQL</li>
-                        <li>API Integration (RESTFUL)</li>
-                    </ul>
-                    <div class="qr-code">
-                        <img src="assets/" alt="QR Code for Member 4's LinkedIn" width="100" height="100" />
-                        <div class="qr-label">Connect On LinkedIn</div>
-                    </div>
+            <form id="contact-form" method="POST">
+                <div class="form-group">
+                    <label for="company-name">Company Name</label>
+                    <input type="text" id="company-name" name="companyName" required>
+                    <span class="error-message" id="company-name-error"></span>
+                    <!-- Error message for company name -->
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="contact-name">Contact Person Name</label>
+                    <input type="text" id="contact-name" name="contactName" required>
+                    <span class="error-message" id="contact-name-error"></span>
+                    <!-- Error message for contact name -->
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="email-error"></span> <!-- Error message for email -->
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <span class="error-message" id="phone-error"></span> <!-- Error message for phone number -->
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
         </div>
-        </div>
+    </div>
 
-        <!-- Footer-->
-        <footer>
-            <p>Copyright &copy; Your Website 2023</p>
-        </footer>
+    <!-- JavaScript for Popup Functionality -->
+    <script>
+        // Get the modal for member details
+        var memberPopup = document.getElementById('member-popup');
 
-        <!-- Popup Form -->
-        <div id="popup-form" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <img src="../assets/images/form-collabaration.jpeg" alt="Collaboration Image"
-                    style="max-width: 100%; height: auto; margin-bottom: 15px;" /> <!-- Second Image -->
+        // Function to show the popup
+        function showPopup(name, role, skills, qrCodeSrc, memberImage, description) {
+            document.getElementById('popup-name').innerText = name;
+            document.getElementById('popup-role').innerText = role;
+            document.getElementById('popup-skills').innerText = "Skill Sets:\n" + skills;
+            document.getElementById('popup-image').src = memberImage;
+            document.getElementById('popup-description').innerText = description;
+            document.getElementById('popup-qr').src = qrCodeSrc;
 
-                <form id="contact-form" method="POST">
-                    <div class="form-group">
-                        <label for="company-name">Company Name</label>
-                        <input type="text" id="company-name" name="companyName" required>
-                        <span class="error-message" id="company-name-error"></span>
-                        <!-- Error message for company name -->
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-name">Contact Person Name</label>
-                        <input type="text" id="contact-name" name="contactName" required>
-                        <span class="error-message" id="contact-name-error"></span>
-                        <!-- Error message for contact name -->
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                        <span class="error-message" id="email-error"></span> <!-- Error message for email -->
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
-                        <span class="error-message" id="phone-error"></span> <!-- Error message for phone number -->
-                    </div>
-                    <button type="submit" class="btn">Submit</button>
-                </form>
-            </div>
+            memberPopup.style.display = 'block'; // Show the popup
+            memberPopup.style.top = '0'; // Start the popup from the top
+            setTimeout(() => {
+                memberPopup.style.top = '10%'; // Slide down to visible position
+            }, 10); // Small timeout to ensure the transition is smooth
+        }
 
+        // Function to close the popup
+        function closePopup() {
+            memberPopup.style.top = '-100%'; // Move popup out of view
+            setTimeout(() => {
+                memberPopup.style.display = 'none'; // Hide the popup after the transition
+            }, 500); // Match this with the transition duration
+        }
 
-        <!-- JavaScript for Popup Form -->
-        <script>
-            // Get the modal
-            var modal = document.getElementById('popup-form');
+        // Get the modal
+        var modal = document.getElementById('popup-form');
 
-            // Get the button that opens the modal
-            var openFormBtn = document.getElementById('open-form');
+        // Get the button that opens the modal
+        var openFormBtn = document.getElementById('open-form');
 
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName('close')[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName('close')[0];
 
-            // When the user clicks on the button, open the modal
-            openFormBtn.onclick = function () {
-                modal.style.display = 'block';
-            }
+        // When the user clicks on the button, open the modal
+        openFormBtn.onclick = function () {
+            modal.style.display = 'block';
+        }
 
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = 'none';
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
                 modal.style.display = 'none';
             }
+        }
 
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
+        // Form submission handling
+        var form = document.getElementById('contact-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Clear previous error messages
+            document.getElementById('company-name-error').innerText = '';
+            document.getElementById('contact-name-error').innerText = '';
+            document.getElementById('email-error').innerText = '';
+            document.getElementById('phone-error').innerText = '';
+
+            // Log form data
+            var formData = new FormData(form);
+            for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]); // Log each field and its value
             }
 
-            // Form submission handling
-            // Form submission handling
-            var form = document.getElementById('contact-form');
-            form.addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent default form submission
+            // Validation flags
+            let isValid = true;
 
-                // Clear previous error messages
-                document.getElementById('company-name-error').innerText = '';
-                document.getElementById('contact-name-error').innerText = '';
-                document.getElementById('email-error').innerText = '';
-                document.getElementById('phone-error').innerText = '';
+            // Validate Company Name
+            const companyName = document.getElementById('company-name').value;
+            if (companyName.trim() === '') {
+                document.getElementById('company-name-error').innerText = 'Company name is required.';
+                isValid = false;
+            }
 
-                // Log form data
-                var formData = new FormData(form);
-                for (var pair of formData.entries()) {
-                    console.log(pair[0] + ': ' + pair[1]); // Log each field and its value
-                }
+            // Validate Contact Person Name
+            const contactName = document.getElementById('contact-name').value;
+            if (contactName.trim() === '') {
+                document.getElementById('contact-name-error').innerText = 'Contact person name is required.';
+                isValid = false;
+            }
 
-                // Validation flags
-                let isValid = true;
+            // Validate Email
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('email-error').innerText = 'Please enter a valid email address.';
+                isValid = false;
+            }
 
-                // Validate Company Name
-                const companyName = document.getElementById('company-name').value;
-                if (companyName.trim() === '') {
-                    document.getElementById('company-name-error').innerText = 'Company name is required.';
-                    isValid = false;
-                }
+            // Validate Phone Number
+            const phone = document.getElementById('phone').value;
+            if (phone.trim() === '') {
+                document.getElementById('phone-error').innerText = 'Phone number is required.';
+                isValid = false;
+            } else if (!/^\d{10}$/.test(phone)) { // Assuming a 10-digit phone number
+                document.getElementById('phone-error').innerText = 'Please enter a valid phone number.';
+                isValid = false;
+            }
 
-                // Validate Contact Person Name
-                const contactName = document.getElementById('contact-name').value;
-                if (contactName.trim() === '') {
-                    document.getElementById('contact-name-error').innerText = 'Contact person name is required.';
-                    isValid = false;
-                }
-
-                // Validate Email
-                const email = document.getElementById('email').value;
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(email)) {
-                    document.getElementById('email-error').innerText = 'Please enter a valid email address.';
-                    isValid = false;
-                }
-
-                // Validate Phone Number
-                const phone = document.getElementById('phone').value;
-                if (phone.trim() === '') {
-                    document.getElementById('phone-error').innerText = 'Phone number is required.';
-                    isValid = false;
-                } else if (!/^\d{10}$/.test(phone)) { // Assuming a 10-digit phone number
-                    document.getElementById('phone-error').innerText = 'Please enter a valid phone number.';
-                    isValid = false;
-                }
-
-                // If valid, proceed with form submission
-                if (isValid) {
-                    // Use the existing formData
-                    fetch('/submit-form', {
-                        method: 'POST',
-                        body: formData,
+            // If valid, proceed with form submission
+            if (isValid) {
+                // Use the existing formData
+                fetch('/submit-form', {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok.');
+                        }
+                        return response.text(); // Expecting text response
                     })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok.');
-                            }
-                            return response.text(); // Expecting text response
-                        })
-                        .then(data => {
-                            alert(data); // Show success message
-                            form.reset(); // Reset the form
-                            modal.style.display = 'none'; // Close modal after submission
-                        })
-                        .catch(error => {
-                            alert('There was a problem with your submission: ' + error.message);
-                        });
-                }
-            });
+                    .then(data => {
+                        alert(data); // Show success message
+                        form.reset(); // Reset the form
+                        modal.style.display = 'none'; // Close modal after submission
+                    })
+                    .catch(error => {
+                        alert('There was a problem with your submission: ' + error.message);
+                    });
+            }
+        });
 
+        // Show team section on Team link click
+        document.getElementById('team-link').onclick = function (event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+            document.getElementById('main-heading').style.display = 'none'; // Hide the main heading
+            document.getElementById('team-section').style.display = 'flex'; // Show team section as flex
+            document.getElementById('team-section').scrollIntoView(); // Scroll to the team section
+        }
 
-
-        </script>
-
+        // Hide team section and scroll to top on Home link click
+        document.getElementById('home-link').onclick = function (event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+            document.getElementById('team-section').style.display = 'none'; // Hide team section
+            document.getElementById('main-heading').style.display = 'block'; // Show the main heading again
+            document.getElementById('home-content').scrollIntoView(); // Scroll to home content
+        }
+    </script>
 
 </body>
 
-</html> 
+</html>
