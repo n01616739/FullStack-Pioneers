@@ -10,130 +10,165 @@
     <link rel="icon" type="image/x-icon" href="./assets/logo/logo.webp" />
     <link href="./css/styles.css" rel="stylesheet" />
     <style>
-        /* Ensure the entire page uses flexbox */
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Full viewport height */
-            margin: 0; /* Remove default margin */
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* Space between logo and links */
+            align-items: center; /* Center items vertically */
+            padding: 10px 20px; /* Add padding */
+            background-color: #002147; /* Navbar background color */
+        }
+
+        .navbar ul {
+            display: flex; /* Align items horizontally */
+            list-style-type: none; /* Remove default list styling */
+            margin: 0; /* Remove margin */
+            padding: 0; /* Remove padding */
+        }
+
+        .navbar ul li {
+            margin: 0 15px; /* Spacing between items */
+        }
+
+        .navbar a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Text color */
+            font-weight: bold; /* Bold text */
         }
 
         .container {
-            flex: 1; /* Allow this container to grow and take available space */
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center content horizontally */
-            justify-content: center; /* Center content vertically */
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Additional CSS to hide the team section initially */
         #team-section {
-            display: none; /* Hide team section by default */
+            display: none;
             flex-direction: column;
-            align-items: center; /* Center team members */
+            align-items: center;
         }
 
-        /* Team grid styling */
         .team-grid {
-            background-color: transparent; /* Ensure no background color */
-            padding: 20px; /* Optional: Add padding for layout */
-            display: flex; /* Use flexbox for horizontal layout */
-            justify-content: center; /* Center team members horizontally */
-            gap: 20px; /* Space between team members */
+            background-color: transparent;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
         .team-member {
-            text-align: center; /* Center text within each member */
-            max-width: 200px; /* Limit the width of each member card */
-            border: 1px solid #ccc; /* Optional: border for visibility */
-            border-radius: 10px; /* Optional: rounded corners */
-            padding: 10px; /* Optional: padding for aesthetics */
-            background-color: #fff; /* Optional: background color */
-            cursor: pointer; /* Indicate clickable item */
+            text-align: center;
+            max-width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #fff;
+            cursor: pointer;
         }
 
-         /* Popup styling */
-    .popup {
-        display: none; /* Hidden by default */
-        position: fixed; /* Fixed position for the popup */
-        top: -100%; /* Start above the viewport */
-        left: 0;
-        right: 0;
-        background-color: #4a90e2; /* Popup background color */
-        color: white; /* Text color */
-        padding: 20px; /* Padding around text */
-        border-radius: 8px; /* Rounded corners */
-        transition: top 0.5s ease; /* Animation for sliding down */
-        z-index: 1000; /* Ensure it appears on top */
-        text-align: center; /* Center text in the popup */
-    }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4a90e2;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            z-index: 1000;
+            text-align: center;
+            width: 300px;
+            max-width: 90%;
+        }
 
-    /* Styling for the popup image */
-    #popup-image {
-        width: 100px; /* Fixed width */
-        height: 100px; /* Fixed height to maintain square shape */
-        object-fit: cover; /* Ensure the image covers the box without stretching */
-        border-radius: 10%; /* Optional: rounded corners */
-        margin: 10px auto; /* Center the image */
-    }
+        #popup-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 10px auto;
+        }
 
         footer {
-            text-align: center; /* Center the footer text */
-            padding: 10px 0; /* Add some padding for spacing */
-            background-color: #002147; /* Dark blue background color for footer */
-            color: white; /* White text color for footer */
-            border-top: 1px solid #e7e7e7; /* Optional: border-top for visual separation */
+            text-align: center;
+            padding: 10px 0;
+            background-color: #002147;
+            color: white;
+            border-top: 1px solid #e7e7e7;
         }
 
         h2 {
-            background-color: #002147; /* Dark blue background color for the heading */
-            color: white; /* White text color for the heading */
-            padding: 10px; /* Add some padding for spacing */
-            text-align: center; /* Center the heading text */
+            background-color: #002147;
+            color: white;
+            padding: 10px;
+            text-align: center;
         }
 
         .text-content {
-            text-align: center; /* Center text */
+            text-align: center;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center items horizontally */
+            align-items: center;
+        }
+
+        #popup-name {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        #popup-role,
+        #popup-skills,
+        #popup-description {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        #popup-qr {
+            width: 80px;
+            height: 80px;
+            margin: 10px auto;
         }
     </style>
 </head>
 
 <body>
-    <!-- Responsive navbar-->
     <nav class="navbar">
         <a class="navbar-brand" href="#"><img src="./assets/logo/logo.webp" alt="Logo" class="left-image" /></a>
         <ul>
             <li><a href="#home-content" id="home-link">Home</a></li>
             <li><a href="#team-section" id="team-link">Team</a></li>
             <li><a href="#" id="open-form">Contact</a></li>
+            <li>
+                <div id="notification-bell" style="position: relative; cursor: pointer;">
+                    <img src="./assets/images/bell.png" alt="Notification Bell" style="width: 30px;">
+                    <span id="notification-count" style="position: absolute; top: -10px; right: -10px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; display: none;">0</span>
+                </div>
+            </li>
         </ul>
         <div class="right-logo">
             <img src="./assets/logo/humber_logo.png" alt="Second Logo" class="right-image" />
         </div>
     </nav>
 
-    <!-- Page Content-->
     <div class="container">
-        <!-- Home Content -->
         <div id="home-content">
             <div class="text-content">
                 <h1 id="main-heading">FULLSTACK PIONEERS</h1>
-                <p>We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500 companies
-                    such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and
-                    Software Testing. We are currently seeking a sponsor to support us in completing our Capstone
-                    Project. In return, we aim to deliver effective, refactored solutions to our clients' challenges.
-                    Our areas of expertise include Fullstack Development, Mobile App Development, and Database
-                    Management Operations. We pride ourselves on backing our claims with measurable results. Feel free
-                    to explore our projects and LinkedIn profiles as you scroll down.</p>
+                <p>We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500 companies such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and Software Testing. We are currently seeking a sponsor to support us in completing our Capstone Project. In return, we aim to deliver effective, refactored solutions to our clients' challenges. Our areas of expertise include Fullstack Development, Mobile App Development, and Database Management Operations. We pride ourselves on backing our claims with measurable results. Feel free to explore our projects and LinkedIn profiles as you scroll down.</p>
             </div>
         </div>
 
-        <!-- Team Section -->
         <div id="team-section">
-            <h2>Meet Our Team</h2>
             <div class="team-grid">
                 <div class="team-member" onclick="showPopup('Siddharth Nambiar', 'Full Stack Developer', 'Java, Express.js, Python', './assets/images/qrcode_member1.png', './assets/images/member-1.jpeg', 'Siddharth is a skilled developer with expertise in both front-end and back-end technologies, creating robust web applications.')">
                     <img src="./assets/images/member-1.jpeg" alt="Member 1" class="member-photo" />
@@ -190,7 +225,7 @@
                 </div>
 
                 <div class="team-member" onclick="showPopup('Mushfiqur Rahman', 'Front End And Database Operations', 'JavaScript, MySQL, API Integration (RESTFUL)', './assets/', './assets/member4.jpg', 'Mushfiqur specializes in integrating APIs and managing database operations, ensuring seamless data flow.')">
-                    <img src="./assets/member4.jpg" alt="Member 4" class="member-photo" />
+                    <img src="./assets/images/member4.jpeg" alt="Member 4" class="member-photo" />
                     <div class="member-info">
                         <h3>Mushfiqur Rahman</h3>
                         <h4>Front End And Database Operations</h4>
@@ -201,7 +236,7 @@
                             <li>API Integration (RESTFUL)</li>
                         </ul>
                         <div class="qr-code">
-                            <img src="assets/" alt="QR Code for Member 4's LinkedIn" width="100" height="100" />
+                            <img src="./assets/images/team-member4.png" alt="QR Code for Member 4's LinkedIn" width="100" height="100" />
                             <div class="qr-label">Connect On LinkedIn</div>
                         </div>
                     </div>
@@ -210,63 +245,125 @@
         </div>
     </div>
 
-    <!-- Popup for Member Details -->
     <div id="member-popup" class="popup">
-        <img id="popup-image" src="" alt="Member Image" style="max-width: 100px; display: block; margin: 10px auto; border-radius: 50%;" />
+        <img id="popup-image" src="" alt="Member Image" />
         <h3 id="popup-name"></h3>
         <h4 id="popup-role"></h4>
         <p id="popup-skills"></p>
         <p id="popup-description"></p>
-        <img id="popup-qr" src="" alt="QR Code" style="max-width: 100px; display: block; margin: 10px auto;" />
+        <img id="popup-qr" src="" alt="QR Code" />
         <button onclick="closePopup()">Close</button>
     </div>
 
-    <!-- Footer-->
     <footer>
         <p>Copyright &copy; Your Website 2023</p>
     </footer>
 
-    <!-- Popup Form -->
     <div id="popup-form" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <img src="./assets/images/form-collabaration.jpeg" alt="Collaboration Image"
-                style="max-width: 100%; height: auto; margin-bottom: 15px;" /> <!-- Second Image -->
+                style="max-width: 100%; height: auto; margin-bottom: 15px;" />
 
             <form id="contact-form" method="POST">
                 <div class="form-group">
                     <label for="company-name">Company Name</label>
                     <input type="text" id="company-name" name="companyName" required>
                     <span class="error-message" id="company-name-error"></span>
-                    <!-- Error message for company name -->
                 </div>
                 <div class="form-group">
                     <label for="contact-name">Contact Person Name</label>
                     <input type="text" id="contact-name" name="contactName" required>
                     <span class="error-message" id="contact-name-error"></span>
-                    <!-- Error message for contact name -->
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" required>
-                    <span class="error-message" id="email-error"></span> <!-- Error message for email -->
+                    <span class="error-message" id="email-error"></span>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" name="phone" required>
-                    <span class="error-message" id="phone-error"></span> <!-- Error message for phone number -->
+                    <span class="error-message" id="phone-error"></span>
                 </div>
                 <button type="submit" class="btn">Submit</button>
             </form>
         </div>
     </div>
 
-    <!-- JavaScript for Popup Functionality -->
     <script>
-        // Get the modal for member details
+   document.addEventListener('DOMContentLoaded', () => {
+    let notificationCount = 0;
+    let notifications = [];
+
+    // Connect to WebSocket server
+    const socket = new WebSocket('ws://localhost:8080');
+
+    // When receiving a new email notification
+    socket.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+        notifications.push(message);
+        notificationCount++;
+
+        // Update notification count on the UI
+        const notificationCountElement = document.getElementById('notification-count');
+        notificationCountElement.innerText = notificationCount;
+        notificationCountElement.style.display = 'block';
+    };
+
+    // When user clicks on the notification bell
+    document.getElementById('notification-bell').addEventListener('click', () => {
+        const notificationModal = document.createElement('div');
+        notificationModal.style.position = 'fixed';
+        notificationModal.style.top = '50%';
+        notificationModal.style.left = '50%';
+        notificationModal.style.transform = 'translate(-50%, -50%)';
+        notificationModal.style.backgroundColor = 'white';
+        notificationModal.style.padding = '20px';
+        notificationModal.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+        notificationModal.style.zIndex = '1000';
+
+        if (notifications.length > 0) {
+            let messageContent = notifications.map((message, index) => `
+                <p>
+                    <strong>From:</strong> ${message.sender}<br>
+                    <strong>Subject:</strong> ${message.subject}<br>
+                    <strong>Message:</strong> ${message.snippet}<br>
+                    <button onclick="markAsRead(${index})">Mark as read</button>
+                </p>
+            `).join('');
+            notificationModal.innerHTML = `
+                <h3>Notifications</h3>
+                ${messageContent}
+                <button onclick="document.body.removeChild(this.parentNode)">Close</button>
+            `;
+        } else {
+            notificationModal.innerHTML = '<p>No new messages.</p>';
+        }
+
+        document.body.appendChild(notificationModal);
+    });
+
+    // Function to mark a notification as read
+    window.markAsRead = (index) => {
+        notifications.splice(index, 1); // Remove the read notification
+        notificationCount--; // Decrease the notification count
+
+        // Update the notification count on the UI
+        const notificationCountElement = document.getElementById('notification-count');
+        notificationCountElement.innerText = notificationCount;
+        if (notificationCount === 0) {
+            notificationCountElement.style.display = 'none';
+        }
+
+        // Close the notification modal
+        document.body.removeChild(document.querySelector('div[style*="translate(-50%, -50%)"]'));
+    };
+});
+
+
         var memberPopup = document.getElementById('member-popup');
 
-        // Function to show the popup
         function showPopup(name, role, skills, qrCodeSrc, memberImage, description) {
             document.getElementById('popup-name').innerText = name;
             document.getElementById('popup-role').innerText = role;
@@ -275,82 +372,66 @@
             document.getElementById('popup-description').innerText = description;
             document.getElementById('popup-qr').src = qrCodeSrc;
 
-            memberPopup.style.display = 'block'; // Show the popup
-            memberPopup.style.top = '0'; // Start the popup from the top
+            memberPopup.style.display = 'block';
+            memberPopup.style.top = '0';
             setTimeout(() => {
-                memberPopup.style.top = '10%'; // Slide down to visible position
-            }, 10); // Small timeout to ensure the transition is smooth
+                memberPopup.style.top = '10%';
+            }, 10);
         }
 
-        // Function to close the popup
         function closePopup() {
-            memberPopup.style.top = '-100%'; // Move popup out of view
+            memberPopup.style.top = '-100%';
             setTimeout(() => {
-                memberPopup.style.display = 'none'; // Hide the popup after the transition
-            }, 500); // Match this with the transition duration
+                memberPopup.style.display = 'none';
+            }, 500);
         }
 
-        // Get the modal
         var modal = document.getElementById('popup-form');
-
-        // Get the button that opens the modal
         var openFormBtn = document.getElementById('open-form');
-
-        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName('close')[0];
 
-        // When the user clicks on the button, open the modal
         openFormBtn.onclick = function () {
             modal.style.display = 'block';
         }
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = 'none';
         }
 
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
             }
         }
 
-        // Form submission handling
         var form = document.getElementById('contact-form');
         form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
-            // Clear previous error messages
             document.getElementById('company-name-error').innerText = '';
             document.getElementById('contact-name-error').innerText = '';
             document.getElementById('email-error').innerText = '';
             document.getElementById('phone-error').innerText = '';
 
-            // Log form data
             var formData = new FormData(form);
             for (var pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]); // Log each field and its value
+                console.log(pair[0] + ': ' + pair[1]);
             }
 
-            // Validation flags
             let isValid = true;
 
-            // Validate Company Name
             const companyName = document.getElementById('company-name').value;
             if (companyName.trim() === '') {
                 document.getElementById('company-name-error').innerText = 'Company name is required.';
                 isValid = false;
             }
 
-            // Validate Contact Person Name
             const contactName = document.getElementById('contact-name').value;
             if (contactName.trim() === '') {
                 document.getElementById('contact-name-error').innerText = 'Contact person name is required.';
                 isValid = false;
             }
 
-            // Validate Email
             const email = document.getElementById('email').value;
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(email)) {
@@ -358,19 +439,16 @@
                 isValid = false;
             }
 
-            // Validate Phone Number
             const phone = document.getElementById('phone').value;
             if (phone.trim() === '') {
                 document.getElementById('phone-error').innerText = 'Phone number is required.';
                 isValid = false;
-            } else if (!/^\d{10}$/.test(phone)) { // Assuming a 10-digit phone number
+            } else if (!/^\d{10}$/.test(phone)) {
                 document.getElementById('phone-error').innerText = 'Please enter a valid phone number.';
                 isValid = false;
             }
 
-            // If valid, proceed with form submission
             if (isValid) {
-                // Use the existing formData
                 fetch('/submit-form', {
                     method: 'POST',
                     body: formData,
@@ -379,12 +457,12 @@
                         if (!response.ok) {
                             throw new Error('Network response was not ok.');
                         }
-                        return response.text(); // Expecting text response
+                        return response.text();
                     })
                     .then(data => {
-                        alert(data); // Show success message
-                        form.reset(); // Reset the form
-                        modal.style.display = 'none'; // Close modal after submission
+                        alert(data);
+                        form.reset();
+                        modal.style.display = 'none';
                     })
                     .catch(error => {
                         alert('There was a problem with your submission: ' + error.message);
@@ -392,23 +470,20 @@
             }
         });
 
-        // Show team section on Team link click
         document.getElementById('team-link').onclick = function (event) {
-            event.preventDefault(); // Prevent default anchor click behavior
-            document.getElementById('main-heading').style.display = 'none'; // Hide the main heading
-            document.getElementById('team-section').style.display = 'flex'; // Show team section as flex
-            document.getElementById('team-section').scrollIntoView(); // Scroll to the team section
+            event.preventDefault();
+            document.getElementById('main-heading').style.display = 'none';
+            document.getElementById('team-section').style.display = 'flex';
+            document.getElementById('team-section').scrollIntoView();
         }
 
-        // Hide team section and scroll to top on Home link click
         document.getElementById('home-link').onclick = function (event) {
-            event.preventDefault(); // Prevent default anchor click behavior
-            document.getElementById('team-section').style.display = 'none'; // Hide team section
-            document.getElementById('main-heading').style.display = 'block'; // Show the main heading again
-            document.getElementById('home-content').scrollIntoView(); // Scroll to home content
+            event.preventDefault();
+            document.getElementById('team-section').style.display = 'none';
+            document.getElementById('main-heading').style.display = 'block';
+            document.getElementById('home-content').scrollIntoView();
         }
     </script>
-
 </body>
 
 </html>
