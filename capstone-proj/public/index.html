@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -8,6 +7,9 @@
     <meta name="author" content="" />
     <title>Fullstack Pioneers</title>
     <link rel="icon" type="image/x-icon" href="./assets/logo/logo.webp" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet" />
     <style>
         body {
@@ -15,88 +17,68 @@
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
+            background: url('./assets/images/new_background_image.png') no-repeat center center/cover;
         }
 
         .navbar {
             display: flex;
-            justify-content: space-between; /* Space between logo and links */
-            align-items: center; /* Center items vertically */
-            padding: 10px 20px; /* Add padding */
-            background-color: #002147; /* Navbar background color */
-        }
-
-        .navbar ul {
-            display: flex; /* Align items horizontally */
-            list-style-type: none; /* Remove default list styling */
-            margin: 0; /* Remove margin */
-            padding: 0; /* Remove padding */
-        }
-
-        .navbar ul li {
-            margin: 0 15px; /* Spacing between items */
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #002147;
         }
 
         .navbar a {
-            text-decoration: none; /* Remove underline from links */
-            color: white; /* Text color */
-            font-weight: bold; /* Bold text */
-        }
-
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #team-section {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .team-grid {
-            background-color: transparent;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .team-member {
-            text-align: center;
-            max-width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 10px;
-            background-color: #fff;
-            cursor: pointer;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #4a90e2;
+            text-decoration: none;
             color: white;
-            padding: 15px;
-            border-radius: 8px;
-            transition: all 0.5s ease;
-            z-index: 1000;
-            text-align: center;
-            width: 300px;
-            max-width: 90%;
+            font-weight: bold;
         }
 
-        #popup-image {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 10px auto;
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #002147;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .header {
+            flex: 1; /* Take available space */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        #main-title {
+            font-size: 4em;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            font-family: 'Pacifico', cursive;
         }
 
         footer {
@@ -105,39 +87,167 @@
             background-color: #002147;
             color: white;
             border-top: 1px solid #e7e7e7;
+            margin-top: auto; /* Ensure footer stays at the bottom */
+        }
+
+        .subtitles-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .subtitle-line {
+            margin-top: 15px;
+        }
+
+        .subtitle-word {
+            font-size: 2em;
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.8s ease-in-out;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
+            align-items: center; /* Center items vertically */
+            justify-items: center; /* Center items horizontally */
+            margin-bottom: 20px;
+            background-image: url('path/to/your/blurred-mirror-image.jpg'); /* Background image for the container */
+            background-size: cover; /* Cover the entire container */
+            background-position: center; /* Center the background image */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            display: none; /* Initially hidden */
+        }
+
+        .team-member {
+            width: 200px; /* Increased width for images */
+            text-align: center;
+            margin: 10px;
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.5s ease-in-out; /* Fade in effect */
+        }
+
+        .team-member img {
+            width: 100%;
+            border-radius: 10px;
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .about-text {
+            grid-column: span 3; /* Make the text span all three columns */
+            padding: 20px;
+            max-width: 600px; /* Control the width of the text container */
+            text-align: center; /* Center text for better aesthetics */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for text */
+            border-radius: 10px; /* Rounded corners for text background */
         }
 
         h2 {
-            background-color: #002147;
-            color: white;
-            padding: 10px;
-            text-align: center;
+            margin-bottom: 20px;
+            color: black; /* Change color to black */
         }
 
-        .text-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .services {
+            display: none; /* Initially hidden */
+            grid-column: span 3; /* Make services span all columns */
+            text-align: center; /* Center services text */
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.5s ease-in-out; /* Fade in effect */
         }
 
-        #popup-name {
-            font-size: 1.2em;
-            margin: 10px 0;
+        .services h2 {
+            font-family: 'Roboto', sans-serif;
+            color: black; /* Change "Our Services" text color to orange */
         }
 
-        #popup-role,
-        #popup-skills,
-        #popup-description {
-            font-size: 0.9em;
-            margin: 5px 0;
+        .services img {
+            width: 250px; /* Increased image width for services */
+            border-radius: 10px; /* Rounded corners for service images */
+            margin: 20px; /* Increased margin for spacing */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition effects */
         }
 
-        #popup-qr {
-            width: 80px;
-            height: 80px;
-            margin: 10px auto;
+        .services img:hover {
+            transform: scale(1.05); /* Scale effect on hover */
+            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.5); /* Shadow effect on hover */
         }
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px; /* Reduced padding */
+    border: 1px solid #888;
+    width: 30%; /* Reduced width */
+    max-width: 400px; /* Reduced max-width */
+    border-radius: 10px; /* Slightly smaller border-radius */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly less shadow */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px; /* Smaller font size */
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Reduced margin between form groups */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Reduced space between label and input */
+    text-align: center;
+}
+
+.form-group input {
+    width: 100%;
+    max-width: 300px; /* Reduced max-width */
+    padding: 10px; /* Reduced padding */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Smaller border-radius */
+    font-size: 0.9em; /* Slightly smaller font */
+}
+
+.btn {
+    background-color: #002147;
+    color: white;
+    padding: 10px 20px; /* Reduced padding */
+    border: none;
+    border-radius: 8px; /* Slightly smaller border-radius */
+    cursor: pointer;
+    font-size: 1em; /* Slightly smaller font */
+    margin-top: 15px; /* Reduced margin on top */
+}
+
+.btn:hover {
+    background-color: #575757;
+}
+
     </style>
 </head>
 
@@ -146,12 +256,18 @@
         <a class="navbar-brand" href="#"><img src="./assets/logo/logo.webp" alt="Logo" class="left-image" /></a>
         <ul>
             <li><a href="#home-content" id="home-link">Home</a></li>
-            <li><a href="#team-section" id="team-link">Team</a></li>
+            <li class="dropdown">
+                <a href="#team-section" id="team-link">Team</a>
+                <div class="dropdown-content">
+                    <a href="#" id="services-link">Services</a>
+                </div>
+            </li>
             <li><a href="#" id="open-form">Contact</a></li>
             <li>
                 <div id="notification-bell" style="position: relative; cursor: pointer;">
                     <img src="./assets/images/bell.png" alt="Notification Bell" style="width: 30px;">
-                    <span id="notification-count" style="position: absolute; top: -10px; right: -10px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; display: none;">0</span>
+                    <span id="notification-count"
+                        style="position: absolute; top: -10px; right: -10px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; display: none;">0</span>
                 </div>
             </li>
         </ul>
@@ -160,104 +276,59 @@
         </div>
     </nav>
 
+    <header class="header">
+        <h1 id="main-title">Meet Fullstack Pioneers</h1>
+        <div id="subtitles-container" class="subtitles-container">
+            <div class="subtitle-line">
+                <span class="subtitle-word">We</span>
+                <span class="subtitle-word">Develop</span>
+                <span class="subtitle-word">Full Stack Applications</span>
+            </div>
+            <div class="subtitle-line scalable">
+                <span class="subtitle-word">Scalable Websites</span>
+            </div>
+            <div class="subtitle-line mobile">
+                <span class="subtitle-word">Mobile Applications</span>
+            </div>
+        </div>
+    </header>
     <div class="container">
-        <div id="home-content">
-            <div class="text-content">
-                <h1 id="main-heading">FULLSTACK PIONEERS</h1>
-                <p>We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500 companies such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and Software Testing. We are currently seeking a sponsor to support us in completing our Capstone Project. In return, we aim to deliver effective, refactored solutions to our clients' challenges. Our areas of expertise include Fullstack Development, Mobile App Development, and Database Management Operations. We pride ourselves on backing our claims with measurable results. Feel free to explore our projects and LinkedIn profiles as you scroll down.</p>
+        <div class="about-container" id="about-container">
+            <div class="team-member" id="member1">
+                <img src="./assets/images/member-1.jpeg" alt="Member 1" />
+            </div>
+            <div class="about-text">
+                <h2>About Our Team</h2>
+                <p>
+                    We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500 companies 
+                    such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and Software Testing.
+                     We are currently seeking a sponsor to support us in completing our Capstone Project. In return, we aim to deliver effective, 
+                     refactored solutions to our clients' challenges. Our areas of expertise include Fullstack Development,
+                      Mobile App Development, and Database Management Operations. We pride ourselves on backing 
+                      our claims with measurable results.
+                </p>
+            </div>
+            <div class="team-member" id="member2">
+                <img src="./assets/images/Sneha.jpg" alt="Member 2" />
+            </div>
+            <div class="team-member" id="member3">
+                <img src="./assets/images/Abhsiha.jpeg" alt="Member 3" />
+            </div>
+            <div class="team-member" id="member4">
+                <img src="./assets/images/member4.jpeg" alt="Member 4" />
             </div>
         </div>
 
-        <div id="team-section">
-            <div class="team-grid">
-                <div class="team-member" onclick="showPopup('Siddharth Nambiar', 'Full Stack Developer', 'Java, Express.js, Python', './assets/images/qrcode_member1.png', './assets/images/member-1.jpeg', 'Siddharth is a skilled developer with expertise in both front-end and back-end technologies, creating robust web applications.')">
-                    <img src="./assets/images/member-1.jpeg" alt="Member 1" class="member-photo" />
-                    <div class="member-info">
-                        <h3>Siddharth Nambiar</h3>
-                        <h4>Full Stack Developer</h4>
-                        <p>Skill Sets:</p>
-                        <ul>
-                            <li>Java</li>
-                            <li>Express.js</li>
-                            <li>Python</li>
-                        </ul>
-                        <div class="qr-code">
-                            <img src="./assets/images/qrcode_member1.png" alt="QR Code for Member 1's LinkedIn" width="100" height="100" />
-                            <div class="qr-label">Connect On LinkedIn</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member" onclick="showPopup('Abhisha Mathew', 'Full Stack Developer', 'Java, Node, React', './assets/images/team-member2.png', './assets/images/Abhsiha.jpeg', 'Abhisha is adept at developing scalable applications, leveraging her full-stack skills to enhance user experiences.')">
-                    <img src="./assets/images/Abhsiha.jpeg" alt="Member 2" class="member-photo" />
-                    <div class="member-info">
-                        <h3>Abhisha Mathew</h3>
-                        <h4>Full Stack Developer</h4>
-                        <p>Skill Sets:</p>
-                        <ul>
-                            <li>Java</li>
-                            <li>Node</li>
-                            <li>React</li>
-                        </ul>
-                        <div class="qr-code">
-                            <img src="./assets/images/team-member2.png" alt="QR Code for Member 2's LinkedIn" width="100" height="100" />
-                            <div class="qr-label">Connect On LinkedIn</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member" onclick="showPopup('Sneha Jose', 'Front End Developer', 'JavaScript, CSS (Bootstrap), Git', './assets/images/team-member3.png', './assets/images/Sneha.jpg', 'Sneha excels in creating responsive designs and optimizing user interfaces for enhanced user engagement.')">
-                    <img src="./assets/images/Sneha.jpg" alt="Member 3" class="member-photo" />
-                    <div class="member-info">
-                        <h3>Sneha Jose</h3>
-                        <h4>Front End Developer</h4>
-                        <p>Skill Sets:</p>
-                        <ul>
-                            <li>JavaScript</li>
-                            <li>CSS (Bootstrap)</li>
-                            <li>Git</li>
-                        </ul>
-                        <div class="qr-code">
-                            <img src="./assets/images/team-member3.png" alt="QR Code for Member 3's LinkedIn" width="100" height="100" />
-                            <div class="qr-label">Connect On LinkedIn</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member" onclick="showPopup('Mushfiqur Rahman', 'Front End And Database Operations', 'JavaScript, MySQL, API Integration (RESTFUL)', './assets/', './assets/member4.jpg', 'Mushfiqur specializes in integrating APIs and managing database operations, ensuring seamless data flow.')">
-                    <img src="./assets/images/member4.jpeg" alt="Member 4" class="member-photo" />
-                    <div class="member-info">
-                        <h3>Mushfiqur Rahman</h3>
-                        <h4>Front End And Database Operations</h4>
-                        <p>Skill Sets:</p>
-                        <ul>
-                            <li>JavaScript</li>
-                            <li>MySQL</li>
-                            <li>API Integration (RESTFUL)</li>
-                        </ul>
-                        <div class="qr-code">
-                            <img src="./assets/images/team-member4.png" alt="QR Code for Member 4's LinkedIn" width="100" height="100" />
-                            <div class="qr-label">Connect On LinkedIn</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="services" id="services">
+            <h2>Our Services</h2>
+            <img src="./assets/images/web-development.jpeg" alt="Web Development" />
+            <img src="./assets/images/nodejs.jpeg" alt="Node.js" />
+            <img src="./assets/images/app-development.jpeg" alt="App Development" />
+            <img src="./assets/images/big-data.jpeg" alt="Big Data" />
+            <img src="./assets/images/database-management.png" alt="Database Management" />
         </div>
     </div>
 
-    <div id="member-popup" class="popup">
-        <img id="popup-image" src="" alt="Member Image" />
-        <h3 id="popup-name"></h3>
-        <h4 id="popup-role"></h4>
-        <p id="popup-skills"></p>
-        <p id="popup-description"></p>
-        <img id="popup-qr" src="" alt="QR Code" />
-        <button onclick="closePopup()">Close</button>
-    </div>
-
-    <footer>
-        <p>Copyright &copy; Your Website 2023</p>
-    </footer>
 
     <div id="popup-form" class="modal">
         <div class="modal-content">
@@ -291,8 +362,132 @@
         </div>
     </div>
 
+
+
+
+    <footer>
+        <p>Copyright &copy; Fullstack Pioneers 2024</p>
+    </footer>
     <script>
-   document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to show the initial title and subtitles
+            const showTitleAndSubtitles = () => {
+                document.getElementById('main-title').style.opacity = 1;
+    
+                const words = document.querySelectorAll('.subtitle-word');
+                words.forEach((word, index) => {
+                    setTimeout(() => {
+                        word.style.opacity = 1; // Fade in
+                        word.style.transform = 'translateX(0)'; // Slide in
+                    }, index * 800); // Delay for each word
+                });
+            };
+    
+            // Function to reset the home state
+            const resetHomeState = () => {
+                const aboutContainer = document.getElementById('about-container');
+                const services = document.getElementById('services');
+    
+                aboutContainer.style.display = 'none'; // Hide the about-container
+                services.style.display = 'none'; // Hide the services section
+    
+                // Hide all team members
+                const members = document.querySelectorAll('.team-member');
+                members.forEach(member => {
+                    member.style.opacity = 0; // Hide the member
+                });
+    
+                services.style.opacity = 0; // Hide the services
+    
+                // Reset visibility and opacity of the header
+                document.getElementById('main-title').style.opacity = 0;
+                const words = document.querySelectorAll('.subtitle-word');
+                words.forEach((word) => {
+                    word.style.opacity = 0;
+                    word.style.transform = 'translateX(100%)';
+                });
+    
+                setTimeout(() => {
+                    showTitleAndSubtitles(); // Show initial content again
+                }, 500);
+            };
+    
+            // Event listener for the Team link
+            // document.getElementById('team-link').onclick = function (event) {
+            //     event.preventDefault();
+            //     const aboutContainer = document.getElementById('about-container');
+            //     const members = document.querySelectorAll('.team-member');
+    
+            //     aboutContainer.style.display = 'grid'; // Display the about-container
+            //     window.scrollTo({ top: aboutContainer.offsetTop - (window.innerHeight / 3), behavior: 'smooth' });
+            //     members.forEach((member, index) => {
+            //         setTimeout(() => {
+            //             member.style.opacity = 1; // Fade in each team member
+            //         }, index * 500); // 500ms delay for each member
+            //     });
+            // };
+    
+// Event listener for the Team link
+document.getElementById('team-link').onclick = function (event) {
+    event.preventDefault();
+    const aboutContainer = document.getElementById('about-container');
+    const members = document.querySelectorAll('.team-member');
+
+    // Display the about-container
+    aboutContainer.style.display = 'grid'; 
+
+    // Ensure smooth scrolling to the middle of the section
+    aboutContainer.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center' // Ensures the section scrolls to the center of the view
+    });
+
+    // Fade in each team member
+    members.forEach((member, index) => {
+        setTimeout(() => {
+            member.style.opacity = 1; // Fade in effect for team members
+        }, index * 500); // 500ms delay for each member
+    });
+};
+
+
+
+         
+
+
+            // Event listener for the Services link
+            document.getElementById('services-link').onclick = function (event) {
+                event.preventDefault();
+                const aboutContainer = document.getElementById('about-container');
+                const services = document.getElementById('services');
+    
+                aboutContainer.style.display = 'none'; // Hide the about-container
+                services.style.display = 'block'; // Display the services section
+                services.style.opacity = 1; // Fade in the services
+            };
+    
+            // Event listener for the Home link
+            document.getElementById('home-link').onclick = function (event) {
+                event.preventDefault();
+                resetHomeState(); // Reset home state to initial appearance
+            };
+    
+            // Call the function to start animation on page load
+            showTitleAndSubtitles();
+        });
+   
+
+
+
+
+
+
+
+
+    //working with Websockets 
+
+
+ document.addEventListener('DOMContentLoaded', () => {
     let notificationCount = 0;
     let notifications = [];
 
@@ -361,32 +556,7 @@
     };
 });
 
-
-        var memberPopup = document.getElementById('member-popup');
-
-        function showPopup(name, role, skills, qrCodeSrc, memberImage, description) {
-            document.getElementById('popup-name').innerText = name;
-            document.getElementById('popup-role').innerText = role;
-            document.getElementById('popup-skills').innerText = "Skill Sets:\n" + skills;
-            document.getElementById('popup-image').src = memberImage;
-            document.getElementById('popup-description').innerText = description;
-            document.getElementById('popup-qr').src = qrCodeSrc;
-
-            memberPopup.style.display = 'block';
-            memberPopup.style.top = '0';
-            setTimeout(() => {
-                memberPopup.style.top = '10%';
-            }, 10);
-        }
-
-        function closePopup() {
-            memberPopup.style.top = '-100%';
-            setTimeout(() => {
-                memberPopup.style.display = 'none';
-            }, 500);
-        }
-
-        var modal = document.getElementById('popup-form');
+var modal = document.getElementById('popup-form');
         var openFormBtn = document.getElementById('open-form');
         var span = document.getElementsByClassName('close')[0];
 
@@ -403,6 +573,7 @@
                 modal.style.display = 'none';
             }
         }
+
 
         var form = document.getElementById('contact-form');
         form.addEventListener('submit', function (event) {
@@ -470,20 +641,7 @@
             }
         });
 
-        document.getElementById('team-link').onclick = function (event) {
-            event.preventDefault();
-            document.getElementById('main-heading').style.display = 'none';
-            document.getElementById('team-section').style.display = 'flex';
-            document.getElementById('team-section').scrollIntoView();
-        }
 
-        document.getElementById('home-link').onclick = function (event) {
-            event.preventDefault();
-            document.getElementById('team-section').style.display = 'none';
-            document.getElementById('main-heading').style.display = 'block';
-            document.getElementById('home-content').scrollIntoView();
-        }
     </script>
 </body>
-
 </html>
