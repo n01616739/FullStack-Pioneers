@@ -1,8 +1,9 @@
 {
   "name": "capstone-proj",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,8 +14,11 @@
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "googleapis": "^144.0.0",
+    "imap": "^0.8.19",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.15",
+    "ws": "^8.18.0",
     "xlsx": "^0.18.5"
   }
 }
