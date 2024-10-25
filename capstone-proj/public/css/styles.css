@@ -139,7 +139,7 @@ footer {
     gap: 20px;
     justify-content: center;
     align-items: stretch;
-    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
     border-radius: 20px;
@@ -149,17 +149,71 @@ footer {
     flex: 0 0 calc(25% - 20px); /* Ensure each team member takes 25% of the container */
     max-width: 280px;            /* Limit max-width for each team member */
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #222798;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
-
 
 .team-member:hover {
     transform: translateY(-10px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
+
+/* Team Grid Styling */
+.team-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    border-radius: 20px;
+}
+
+.team-member {
+    flex: 0 0 calc(25% - 20px); /* Ensure each team member takes 25% of the container */
+    max-width: 280px;            /* Limit max-width for each team member */
+    margin-bottom: 20px;
+    background-color: #222798;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Responsive Media Queries */
+
+/* For tablets and medium-sized screens (1024px and below) */
+@media (max-width: 1024px) {
+    .team-grid {
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    }
+    
+    .team-member {
+        flex: 0 0 calc(33.33% - 20px); /* 3 members per row */
+        max-width: 100%;
+    }
+}
+
+/* For mobile screens (600px and below) */
+@media (max-width: 600px) {
+    .team-member {
+        flex: 0 0 calc(50% - 20px); /* 2 members per row */
+        max-width: 100%;
+    }
+}
+
+/* For very small screens (400px and below) */
+@media (max-width: 400px) {
+    .team-member {
+        flex: 0 0 calc(100% - 20px); /* 1 member per row */
+        max-width: 100%;
+    }
+}
+
 
 /* Member Photo */
 .member-photo {
@@ -189,6 +243,79 @@ footer {
     margin-bottom: 10px;
     color: black;
 }
+
+/* Responsive Media Queries */
+
+/* For tablets and medium-sized screens (600px and up) */
+@media (max-width: 1024px) {
+    .team-member {
+        flex: 0 0 calc(33.33% - 20px); /* 3 members per row */
+        max-width: 100%;
+    }
+    
+    #team-section h2 {
+        font-size: 32px;
+    }
+}
+
+/* For mobile screens (600px and below) */
+@media (max-width: 600px) {
+    .team-member {
+        flex: 0 0 calc(50% - 20px); /* 2 members per row */
+        max-width: 100%;
+    }
+
+    #team-section {
+        padding: 0 20px;
+    }
+    
+    #team-section h2 {
+        font-size: 28px;
+    }
+    
+    .member-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .member-info h3 {
+        font-size: 18px;
+    }
+    
+    .member-info h4 {
+        font-size: 14px;
+    }
+    
+    .member-info p {
+        font-size: 12px;
+    }
+}
+
+/* For very small screens (400px and below) */
+@media (max-width: 400px) {
+    .team-member {
+        flex: 0 0 calc(100% - 20px); /* 1 member per row */
+        max-width: 100%;
+    }
+
+    .member-photo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .member-info h3 {
+        font-size: 16px;
+    }
+    
+    .member-info h4 {
+        font-size: 12px;
+    }
+    
+    .member-info p {
+        font-size: 10px;
+    }
+}
+
 
 ul {
     list-style-type: none;
@@ -297,7 +424,7 @@ ul li {
 @media (max-width: 1200px) {
     .team-member {
         flex: 0 0 calc(33.33% - 20px);
-        max-width: 400px
+        max-width: 600px
     }
 }
 
@@ -315,7 +442,11 @@ ul li {
         flex: 0 0 100%; /* Full width for each member */
         margin-bottom: 20px; /* Ensure space between members */
         padding: 54px;
-        max-width: 165px
+        max-width: 500px
+    }
+
+    .modal-content{
+        width:40%;
     }
 }
 
@@ -350,5 +481,10 @@ ul li {
     .right-image {
         height: 40px; /* Adjust logo sizes for smaller screens */
         width: 40px;
+    }
+
+    .modal-content{
+        padding: auto;
+        width:70%;
     }
 }

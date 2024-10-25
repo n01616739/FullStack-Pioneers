@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -23,15 +24,20 @@
         .navbar {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #002147;
+            padding: 10px;
         }
 
         .navbar a {
             text-decoration: none;
-            color: white;
-            font-weight: bold;
+            padding: 10px;
+        }
+
+        /* Adjust navbar for mobile */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         .dropdown {
@@ -44,7 +50,7 @@
             position: absolute;
             background-color: #002147;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
@@ -64,7 +70,8 @@
         }
 
         .header {
-            flex: 1; /* Take available space */
+            flex: 1;
+            /* Take available space */
             color: white;
             display: flex;
             flex-direction: column;
@@ -87,7 +94,8 @@
             background-color: #002147;
             color: white;
             border-top: 1px solid #e7e7e7;
-            margin-top: auto; /* Ensure footer stays at the bottom */
+            margin-top: auto;
+            /* Ensure footer stays at the bottom */
         }
 
         .subtitles-container {
@@ -109,145 +117,337 @@
 
         .about-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
-            align-items: center; /* Center items vertically */
-            justify-items: center; /* Center items horizontally */
+            grid-template-columns: repeat(3, 1fr);
+            /* Create three equal columns */
+            align-items: center;
+            /* Center items vertically */
+            justify-items: center;
+            /* Center items horizontally */
             margin-bottom: 20px;
-            background-image: url('path/to/your/blurred-mirror-image.jpg'); /* Background image for the container */
-            background-size: cover; /* Cover the entire container */
-            background-position: center; /* Center the background image */
-            border-radius: 10px; /* Rounded corners */
-            padding: 20px; /* Padding inside the container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            display: none; /* Initially hidden */
+            background-image: url('path/to/your/blurred-mirror-image.jpg');
+            /* Background image for the container */
+            background-size: cover;
+            /* Cover the entire container */
+            background-position: center;
+            /* Center the background image */
+            border-radius: 10px;
+            /* Rounded corners */
+            padding: 20px;
+            /* Padding inside the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            display: none;
+            /* Initially hidden */
         }
 
         .team-member {
-            width: 200px; /* Increased width for images */
+            width: 200px;
+            /* Increased width for images */
             text-align: center;
             margin: 10px;
-            opacity: 0; /* Start hidden */
-            transition: opacity 0.5s ease-in-out; /* Fade in effect */
+            opacity: 0;
+            /* Start hidden */
+            transition: opacity 0.5s ease-in-out;
+            /* Fade in effect */
         }
 
         .team-member img {
             width: 100%;
             border-radius: 10px;
-            height: auto; /* Maintain aspect ratio */
+            height: 100%;
+            /* Maintain aspect ratio */
         }
 
         .about-text {
-            grid-column: span 3; /* Make the text span all three columns */
+            grid-column: span 3;
+            /* Make the text span all three columns */
             padding: 20px;
-            max-width: 600px; /* Control the width of the text container */
-            text-align: center; /* Center text for better aesthetics */
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for text */
-            border-radius: 10px; /* Rounded corners for text background */
+            max-width: 600px;
+            /* Control the width of the text container */
+            text-align: center;
+            /* Center text for better aesthetics */
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Semi-transparent white background for text */
+            border-radius: 10px;
+            /* Rounded corners for text background */
         }
 
         h2 {
             margin-bottom: 20px;
-            color: black; /* Change color to black */
+            color: black;
+            /* Change color to black */
         }
 
         .services {
-            display: none; /* Initially hidden */
-            grid-column: span 3; /* Make services span all columns */
-            text-align: center; /* Center services text */
-            opacity: 0; /* Start hidden */
-            transition: opacity 0.5s ease-in-out; /* Fade in effect */
+            display: none;
+            /* Initially hidden */
+            grid-column: span 3;
+            /* Make services span all columns */
+            text-align: center;
+            /* Center services text */
+            opacity: 0;
+            /* Start hidden */
+            transition: opacity 0.5s ease-in-out;
+            /* Fade in effect */
         }
 
         .services h2 {
             font-family: 'Roboto', sans-serif;
-            color: black; /* Change "Our Services" text color to orange */
+            color: black;
+            /* Change "Our Services" text color to orange */
         }
 
         .services img {
-            width: 250px; /* Increased image width for services */
-            border-radius: 10px; /* Rounded corners for service images */
-            margin: 20px; /* Increased margin for spacing */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition effects */
+            width: 250px;
+            /* Increased image width for services */
+            border-radius: 10px;
+            /* Rounded corners for service images */
+            margin: 20px;
+            /* Increased margin for spacing */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Transition effects */
         }
 
         .services img:hover {
-            transform: scale(1.05); /* Scale effect on hover */
-            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.5); /* Shadow effect on hover */
+            transform: scale(1.05);
+            /* Scale effect on hover */
+            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.5);
+            /* Shadow effect on hover */
         }
+
         .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px; /* Reduced padding */
-    border: 1px solid #888;
-    width: 30%; /* Reduced width */
-    max-width: 400px; /* Reduced max-width */
-    border-radius: 10px; /* Slightly smaller border-radius */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly less shadow */
-}
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            /* Reduced padding */
+            border: 1px solid #888;
+            width: 30%;
+            /* Reduced width */
+            max-width: 400px;
+            /* Reduced max-width */
+            border-radius: 10px;
+            /* Slightly smaller border-radius */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            /* Slightly less shadow */
+        }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 24px; /* Smaller font size */
-    font-weight: bold;
-}
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            /* Smaller font size */
+            font-weight: bold;
+        }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-.form-group {
-    margin-bottom: 15px; /* Reduced margin between form groups */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .form-group {
+            margin-bottom: 15px;
+            /* Reduced margin between form groups */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 5px; /* Reduced space between label and input */
-    text-align: center;
-}
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            /* Reduced space between label and input */
+            text-align: center;
+        }
 
-.form-group input {
-    width: 100%;
-    max-width: 300px; /* Reduced max-width */
-    padding: 10px; /* Reduced padding */
-    border: 1px solid #ccc;
-    border-radius: 5px; /* Smaller border-radius */
-    font-size: 0.9em; /* Slightly smaller font */
-}
+        .form-group input {
+            width: 100%;
+            max-width: 300px;
+            /* Reduced max-width */
+            padding: 10px;
+            /* Reduced padding */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            /* Smaller border-radius */
+            font-size: 0.9em;
+            /* Slightly smaller font */
+        }
 
-.btn {
-    background-color: #002147;
-    color: white;
-    padding: 10px 20px; /* Reduced padding */
-    border: none;
-    border-radius: 8px; /* Slightly smaller border-radius */
-    cursor: pointer;
-    font-size: 1em; /* Slightly smaller font */
-    margin-top: 15px; /* Reduced margin on top */
-}
+        .btn {
+            background-color: #002147;
+            color: white;
+            padding: 10px 20px;
+            /* Reduced padding */
+            border: none;
+            border-radius: 8px;
+            /* Slightly smaller border-radius */
+            cursor: pointer;
+            font-size: 1em;
+            /* Slightly smaller font */
+            margin-top: 15px;
+            /* Reduced margin on top */
+        }
 
-.btn:hover {
-    background-color: #575757;
-}
+        .btn:hover {
+            background-color: #575757;
+        }
 
+        @media (max-width: 1024px) {
+            .team-member {
+                flex: 0 0 calc(33.33% - 20px);
+                /* 3 members per row */
+                max-width: 100%;
+            }
+
+            #team-section h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* For mobile screens (600px and below) */
+        @media (max-width: 600px) {
+            .team-member {
+                flex: 0 0 calc(50% - 20px);
+                /* 2 members per row */
+                max-width: 100%;
+            }
+
+            #team-section {
+                padding: 0 20px;
+            }
+
+            #team-section h2 {
+                font-size: 28px;
+            }
+
+            .member-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .member-info h3 {
+                font-size: 18px;
+            }
+
+            .member-info h4 {
+                font-size: 14px;
+            }
+
+            .member-info p {
+                font-size: 12px;
+            }
+
+            .modal-content {
+                width: 60%;
+                padding: auto;
+            }
+        }
+
+        /* For very small screens (400px and below) */
+        @media (max-width: 400px) {
+            .team-member {
+                flex: 0 0 calc(100% - 20px);
+                /* 1 member per row */
+                max-width: 100%;
+            }
+
+            .member-photo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .member-info h3 {
+                font-size: 16px;
+            }
+
+            .member-info h4 {
+                font-size: 12px;
+            }
+
+            .member-info p {
+                font-size: 10px;
+            }
+
+            .modal-content {
+                width: 80%;
+                padding: auto;
+            }
+        }
+
+        /* Team Grid Styling */
+        .team-grid {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: nowrap;
+            /* Prevent wrapping on larger screens */
+            padding: 20px;
+            background-color: rgba(21, 20, 20, 0.8);
+            /* Slightly transparent background */
+            border-radius: 20px;
+        }
+
+        .team-member {
+            flex: 0 0 calc(25% - 20px);
+            /* Ensure each team member takes 25% of the container */
+            max-width: 500px;
+            /* Limit max-width for each team member */
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            /* Smooth transition for hover effects */
+        }
+
+        /* Responsive Media Queries */
+
+        /* For tablets and medium-sized screens (1024px and below) */
+        @media (max-width: 1024px) {
+            .team-grid {
+                flex-wrap: wrap;
+                /* Allow wrapping for smaller screens */
+            }
+
+            .team-member {
+                flex: 0 0 calc(33.33% - 20px);
+                /* 3 members per row */
+                max-width: 100%;
+            }
+        }
+
+        /* For mobile screens (600px and below) */
+        @media (max-width: 600px) {
+            .team-member {
+                flex: 0 0 calc(50% - 20px);
+                /* 2 members per row */
+                max-width: 100%;
+            }
+        }
+
+        /* For very small screens (400px and below) */
+        @media (max-width: 400px) {
+            .team-member {
+                flex: 0 0 calc(100% - 20px);
+                /* 1 member per row */
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -297,26 +497,40 @@
             <div class="about-text">
                 <h2>About Our Team</h2>
                 <p>
-                    We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500 companies 
-                    such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and Software Testing.
-                     We are currently seeking a sponsor to support us in completing our Capstone Project. In return, we aim to deliver effective, 
-                     refactored solutions to our clients' challenges. Our areas of expertise include Fullstack Development,
-                      Mobile App Development, and Database Management Operations. We pride ourselves on backing 
-                      our claims with measurable results.
+                    We are a team of four IT Solutions students at Humber, with prior experience at Fortune 500
+                    companies
+                    such as Morgan Stanley and Oracle, as well as startup firms specializing in Software Development and
+                    Software Testing.
+                    We are currently seeking a sponsor to support us in completing our Capstone Project. In return, we
+                    aim to deliver effective,
+                    refactored solutions to our clients' challenges. Our areas of expertise include Fullstack
+                    Development,
+                    Mobile App Development, and Database Management Operations. We pride ourselves on backing
+                    our claims with measurable results.
                 </p>
             </div>
-            <div class="team-member" id="member1">
-                <img src="./assets/images/member-1.jpeg" alt="Member 1" />
-            </div>
-            <div class="team-member" id="member2">
-                <img src="./assets/images/Sneha.jpg" alt="Member 2" />
-            </div>
-            <div class="team-member" id="member3">
-                <img src="./assets/images/Abhsiha.jpeg" alt="Member 3" />
-            </div>
-            <div class="team-member" id="member4">
-                <img src="./assets/images/member4.jpeg" alt="Member 4" />
-            </div>
+            <section id="team-section">
+                <h2>Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member" id="member1">
+                        <img src="./assets/images/member-1.jpeg" alt="Member 1" class="member-photo" />
+                        <!-- Other member details -->
+                    </div>
+                    <div class="team-member" id="member2">
+                        <img src="./assets/images/Abhsiha.jpeg" alt="Member 2" class="member-photo" />
+                        <!-- Other member details -->
+                    </div>
+                    <div class="team-member" id="member3">
+                        <img src="./assets/images/Sneha.jpg" alt="Member 3" class="member-photo" />
+                        <!-- Other member details -->
+                    </div>
+                    <div class="team-member" id="member4">
+                        <img src="./assets/images/member4.jpeg" alt="Member 4" class="member-photo" />
+                        <!-- Other member details -->
+                    </div>
+                </div>
+            </section>
+            
         </div>
 
         <div class="services" id="services">
@@ -373,7 +587,7 @@
             // Function to show the initial title and subtitles
             const showTitleAndSubtitles = () => {
                 document.getElementById('main-title').style.opacity = 1;
-    
+
                 const words = document.querySelectorAll('.subtitle-word');
                 words.forEach((word, index) => {
                     setTimeout(() => {
@@ -382,23 +596,23 @@
                     }, index * 800); // Delay for each word
                 });
             };
-    
+
             // Function to reset the home state
             const resetHomeState = () => {
                 const aboutContainer = document.getElementById('about-container');
                 const services = document.getElementById('services');
-    
+
                 aboutContainer.style.display = 'none'; // Hide the about-container
                 services.style.display = 'none'; // Hide the services section
-    
+
                 // Hide all team members
                 const members = document.querySelectorAll('.team-member');
                 members.forEach(member => {
                     member.style.opacity = 0; // Hide the member
                 });
-    
+
                 services.style.opacity = 0; // Hide the services
-    
+
                 // Reset visibility and opacity of the header
                 document.getElementById('main-title').style.opacity = 0;
                 const words = document.querySelectorAll('.subtitle-word');
@@ -406,18 +620,18 @@
                     word.style.opacity = 0;
                     word.style.transform = 'translateX(100%)';
                 });
-    
+
                 setTimeout(() => {
                     showTitleAndSubtitles(); // Show initial content again
                 }, 500);
             };
-    
+
             // Event listener for the Team link
             // document.getElementById('team-link').onclick = function (event) {
             //     event.preventDefault();
             //     const aboutContainer = document.getElementById('about-container');
             //     const members = document.querySelectorAll('.team-member');
-    
+
             //     aboutContainer.style.display = 'grid'; // Display the about-container
             //     window.scrollTo({ top: aboutContainer.offsetTop - (window.innerHeight / 3), behavior: 'smooth' });
             //     members.forEach((member, index) => {
@@ -426,33 +640,33 @@
             //         }, index * 500); // 500ms delay for each member
             //     });
             // };
-    
-// Event listener for the Team link
-document.getElementById('team-link').onclick = function (event) {
-    event.preventDefault();
-    const aboutContainer = document.getElementById('about-container');
-    const members = document.querySelectorAll('.team-member');
 
-    // Display the about-container
-    aboutContainer.style.display = 'grid'; 
+            // Event listener for the Team link
+            document.getElementById('team-link').onclick = function (event) {
+                event.preventDefault();
+                const aboutContainer = document.getElementById('about-container');
+                const members = document.querySelectorAll('.team-member');
 
-    // Ensure smooth scrolling to the middle of the section
-    aboutContainer.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center' // Ensures the section scrolls to the center of the view
-    });
+                // Display the about-container
+                aboutContainer.style.display = 'grid';
 
-    // Fade in each team member
-    members.forEach((member, index) => {
-        setTimeout(() => {
-            member.style.opacity = 1; // Fade in effect for team members
-        }, index * 500); // 500ms delay for each member
-    });
-};
+                // Ensure smooth scrolling to the middle of the section
+                aboutContainer.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center' // Ensures the section scrolls to the center of the view
+                });
+
+                // Fade in each team member
+                members.forEach((member, index) => {
+                    setTimeout(() => {
+                        member.style.opacity = 1; // Fade in effect for team members
+                    }, index * 500); // 500ms delay for each member
+                });
+            };
 
 
 
-         
+
 
 
             // Event listener for the Services link
@@ -460,22 +674,21 @@ document.getElementById('team-link').onclick = function (event) {
                 event.preventDefault();
                 const aboutContainer = document.getElementById('about-container');
                 const services = document.getElementById('services');
-    
+
                 aboutContainer.style.display = 'none'; // Hide the about-container
                 services.style.display = 'block'; // Display the services section
                 services.style.opacity = 1; // Fade in the services
             };
-    
+
             // Event listener for the Home link
             document.getElementById('home-link').onclick = function (event) {
                 event.preventDefault();
                 resetHomeState(); // Reset home state to initial appearance
             };
-    
+
             // Call the function to start animation on page load
             showTitleAndSubtitles();
         });
-   
 
 
 
@@ -484,42 +697,43 @@ document.getElementById('team-link').onclick = function (event) {
 
 
 
-    //working with Websockets 
+
+        //working with Websockets 
 
 
- document.addEventListener('DOMContentLoaded', () => {
-    let notificationCount = 0;
-    let notifications = [];
+        document.addEventListener('DOMContentLoaded', () => {
+            let notificationCount = 0;
+            let notifications = [];
 
-    // Connect to WebSocket server
-    const socket = new WebSocket('ws://localhost:8080');
+            // Connect to WebSocket server
+            const socket = new WebSocket('ws://localhost:8080');
 
-    // When receiving a new email notification
-    socket.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        notifications.push(message);
-        notificationCount++;
+            // When receiving a new email notification
+            socket.onmessage = (event) => {
+                const message = JSON.parse(event.data);
+                notifications.push(message);
+                notificationCount++;
 
-        // Update notification count on the UI
-        const notificationCountElement = document.getElementById('notification-count');
-        notificationCountElement.innerText = notificationCount;
-        notificationCountElement.style.display = 'block';
-    };
+                // Update notification count on the UI
+                const notificationCountElement = document.getElementById('notification-count');
+                notificationCountElement.innerText = notificationCount;
+                notificationCountElement.style.display = 'block';
+            };
 
-    // When user clicks on the notification bell
-    document.getElementById('notification-bell').addEventListener('click', () => {
-        const notificationModal = document.createElement('div');
-        notificationModal.style.position = 'fixed';
-        notificationModal.style.top = '50%';
-        notificationModal.style.left = '50%';
-        notificationModal.style.transform = 'translate(-50%, -50%)';
-        notificationModal.style.backgroundColor = 'white';
-        notificationModal.style.padding = '20px';
-        notificationModal.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-        notificationModal.style.zIndex = '1000';
+            // When user clicks on the notification bell
+            document.getElementById('notification-bell').addEventListener('click', () => {
+                const notificationModal = document.createElement('div');
+                notificationModal.style.position = 'fixed';
+                notificationModal.style.top = '50%';
+                notificationModal.style.left = '50%';
+                notificationModal.style.transform = 'translate(-50%, -50%)';
+                notificationModal.style.backgroundColor = 'white';
+                notificationModal.style.padding = '20px';
+                notificationModal.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                notificationModal.style.zIndex = '1000';
 
-        if (notifications.length > 0) {
-            let messageContent = notifications.map((message, index) => `
+                if (notifications.length > 0) {
+                    let messageContent = notifications.map((message, index) => `
                 <p>
                     <strong>From:</strong> ${message.sender}<br>
                     <strong>Subject:</strong> ${message.subject}<br>
@@ -527,36 +741,36 @@ document.getElementById('team-link').onclick = function (event) {
                     <button onclick="markAsRead(${index})">Mark as read</button>
                 </p>
             `).join('');
-            notificationModal.innerHTML = `
+                    notificationModal.innerHTML = `
                 <h3>Notifications</h3>
                 ${messageContent}
                 <button onclick="document.body.removeChild(this.parentNode)">Close</button>
             `;
-        } else {
-            notificationModal.innerHTML = '<p>No new messages.</p>';
-        }
+                } else {
+                    notificationModal.innerHTML = '<p>No new messages.</p>';
+                }
 
-        document.body.appendChild(notificationModal);
-    });
+                document.body.appendChild(notificationModal);
+            });
 
-    // Function to mark a notification as read
-    window.markAsRead = (index) => {
-        notifications.splice(index, 1); // Remove the read notification
-        notificationCount--; // Decrease the notification count
+            // Function to mark a notification as read
+            window.markAsRead = (index) => {
+                notifications.splice(index, 1); // Remove the read notification
+                notificationCount--; // Decrease the notification count
 
-        // Update the notification count on the UI
-        const notificationCountElement = document.getElementById('notification-count');
-        notificationCountElement.innerText = notificationCount;
-        if (notificationCount === 0) {
-            notificationCountElement.style.display = 'none';
-        }
+                // Update the notification count on the UI
+                const notificationCountElement = document.getElementById('notification-count');
+                notificationCountElement.innerText = notificationCount;
+                if (notificationCount === 0) {
+                    notificationCountElement.style.display = 'none';
+                }
 
-        // Close the notification modal
-        document.body.removeChild(document.querySelector('div[style*="translate(-50%, -50%)"]'));
-    };
-});
+                // Close the notification modal
+                document.body.removeChild(document.querySelector('div[style*="translate(-50%, -50%)"]'));
+            };
+        });
 
-var modal = document.getElementById('popup-form');
+        var modal = document.getElementById('popup-form');
         var openFormBtn = document.getElementById('open-form');
         var span = document.getElementsByClassName('close')[0];
 
@@ -644,4 +858,5 @@ var modal = document.getElementById('popup-form');
 
     </script>
 </body>
+
 </html>
